@@ -2,21 +2,21 @@
   <div class="grid">
     <div class="text-center">
       <div class="flex content-center">
-        <select v-model="idx" class="rounded my-1 w-full font-sans">
+        <select v-model="idx" class="w-full my-1 font-sans rounded">
           <option value="0">Agsamosam, George</option>
           <option value="1">De Leon, Dennis</option>
           <option value="2">Sibayan, Rodel</option>
           <option value="3">Villaflores, Rodelio</option>
         </select>
         <button @click.stop="goToDateToday"
-          class=" bg-sky-500 text-white rounded-md text-sm px-1 ml-1 uppercase shadow">Today</button>
+          class="px-1 ml-1 text-sm text-white uppercase rounded-md shadow bg-sky-500">Today</button>
       </div>
     </div>
-    <div class="mx-auto text-center w-full">
+    <div class="w-full mx-auto text-center">
       <VCalendar ref="calendar" borderless transparent isDark class="w-full" @did-move="didMove" @dayfocusin="dayclick"
         :attributes="attributes" />
     </div>
-    <div v-if="scheds" class="text-white text-center p-3 bg-gray-600 mt-2 rounded-lg font-sans">
+    <div v-if="scheds" class="p-3 mt-2 font-sans text-center text-white bg-gray-600 rounded-lg">
       <span class="font-bold">{{ selectedDate }}</span>
       <div class="mb-3" v-for="sched in scheds" :key="sched.name">
 
@@ -26,7 +26,7 @@
           'bg-yellow-500': sched.sched === '13',
           'bg-purple-500': sched.sched === '39',
           'bg-orange-500': sched.sched === '13*'
-        }" class="rounded-full  px-2 py-1 bg-gray-200 my-1">
+        }" class="px-2 py-1 my-1 bg-gray-200 rounded-full">
 
           <p class="leading-none">
             <span class="text-xs">{{ convertCodeToLabel(sched.sched) }}</span><br />
@@ -36,8 +36,8 @@
       </div>
     </div>
   </div>
-  <div class="absolute bottom-0 left-0 w-full text-xs text-white text-center mx-auto" @click.prevent="showVersion">
-    v1.1</div>
+  <div class="absolute bottom-0 left-0 w-full mx-auto text-xs text-center text-white" @click.prevent="showVersion">
+    v1.2</div>
 </template>
 
 <script setup>
@@ -74,7 +74,7 @@ const dayclick = (val) => {
   scheds.value = []
   selectedDate.value = val.ariaLabel
   const temp = [{
-    name: 'George Agsamosam',
+    name: 'Agsamosam, George',
     sched: getSched(val.date, 0)
   },
   {
